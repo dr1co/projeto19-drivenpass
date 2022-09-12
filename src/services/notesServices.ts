@@ -20,3 +20,28 @@ export async function getAll(userId: number) {
         throw { code: "ServerProblem", message: err };
     }
 }
+
+export async function deleteOne(id: number, userId: number) {
+    try {
+        const notes = await notesRepository.getAll(userId);
+        let matchId = false;
+
+        for (let i = 0 ; i < notes.length ; i++) {
+            if (notes[i].id === id) {
+                matchId = true;
+                break;
+            }
+        }
+
+        if (!matchId) {
+            throw { code: "NotFound", message: "Error: could not find note to delete" };
+        }
+
+        await notesRepository.deleteOne(id);
+    } catch (err: Error | any) {
+        if (err.code) {
+            throw err;
+        }
+        throw { code: "ServerProblem", message: err };
+    }
+}

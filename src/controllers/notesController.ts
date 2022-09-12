@@ -29,3 +29,17 @@ export async function getAllNotes(req: Request, res: Response) {
         res.status(statusCode).send("On getAllCredentials: " + err.message);
     }
 }
+
+export async function deleteNote(req: Request, res: Response) {
+    const { id } = req.params;
+    const { id: userId } = res.locals.user;
+
+    try {
+        await notesServices.deleteOne(Number(id), Number(userId));
+
+        res.status(203).send("Note deleted successfully");
+    } catch (err: Error | any) {
+        const statusCode = handleError(err.code);
+        res.status(statusCode).send("On getAllCredentials: " + err.message);
+    }
+}
