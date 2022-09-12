@@ -6,7 +6,6 @@ export async function addNew(card: Omit<cardsRepository.ICard, "id">) {
     const encryptedPassword = encryption.encrypt(card.password);
 
     try {
-        console.log({ ...card, securityCode: encryptedSecCode, password: encryptedPassword });
         await cardsRepository.insert({ ...card, securityCode: encryptedSecCode, password: encryptedPassword });
     } catch (err: Error | any) {
         if (err.code === "P2002") {

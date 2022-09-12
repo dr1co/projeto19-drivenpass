@@ -9,6 +9,6 @@ const cardsRouter = express.Router();
 
 cardsRouter.post("/cards", validateToken, validateSchema(cardsSchema), createCard);
 cardsRouter.get("/cards", validateToken, getAllCards);
-cardsRouter.delete("/cards", validateToken, deleteCard);
+cardsRouter.delete("/cards/:id", validateToken, deleteCard);
 
 export default cardsRouter;
