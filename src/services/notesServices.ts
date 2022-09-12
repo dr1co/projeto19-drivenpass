@@ -10,3 +10,13 @@ export async function addNew(note: Omit<notesRepository.INote, "id">) {
         throw { code: "ServerProblem", message: err };
     }
 }
+
+export async function getAll(userId: number) {
+    try {
+        const notes = await notesRepository.getAll(userId);
+
+        return notes;
+    } catch (err: Error | any) {
+        throw { code: "ServerProblem", message: err };
+    }
+}

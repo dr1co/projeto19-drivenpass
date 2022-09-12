@@ -15,6 +15,7 @@
     - Deleção (DELETE "./:id")
 - Rotas de Notas ("/notes"):
     - Criação (POST)
+    - Visualização (GET)
 
 ---
 
@@ -81,6 +82,7 @@ const regras = [
 const regras = [
     1: mensagem de sucesso => 200: credentials = [
         {
+            "id": number,
             "title": string,
             "url": string,
             "username": string,
@@ -116,3 +118,17 @@ const regras = [
     2: um usuário não pode cadastrar duas notas com o mesmo título,
     3: mensagem de sucesso => 201: "Note created successfully"
 ];
+```
+- ### Visualização (GET):
+    Essa rota é responsável por catalogar todas as notas criadas por um usuário. Para utilizá-la, é necessário enviar apenas um *Bearer token* **válido** via cabeçalho (headers) tipo *Authorization*.
+```js
+const regras = [
+    1: mensagem de sucesso => 200: notes = [
+        {
+            "id": number,
+            "title": string,
+            "note": string
+        }, ...
+    ]
+];
+```

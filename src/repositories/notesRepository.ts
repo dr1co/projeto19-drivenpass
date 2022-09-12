@@ -18,3 +18,16 @@ export async function insert(noteObject: Omit<INote, "id">) {
         }
     });
 }
+
+export async function getAll(userId: number) {
+    return await client.notes.findMany({
+        where: {
+            userId
+        },
+        select: {
+            id: true,
+            title: true,
+            note: true
+        }
+    });
+}

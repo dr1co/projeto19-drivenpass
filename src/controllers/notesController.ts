@@ -16,3 +16,16 @@ export async function createNote(req: Request, res: Response) {
         res.status(statusCode).send("On createCredentials: " + err.message);
     }
 }
+
+export async function getAllNotes(req: Request, res: Response) {
+    const { id: userId } = res.locals.user;
+
+    try {
+        const notes = await notesServices.getAll(Number(userId));
+
+        res.status(200).send(notes);
+    } catch (err: Error | any) {
+        const statusCode = handleError(err.code);
+        res.status(statusCode).send("On getAllCredentials: " + err.message);
+    }
+}
