@@ -13,6 +13,8 @@
     - Criação (POST)
     - Visualização (GET)
     - Deleção (DELETE "./:id")
+- Rotas de Notas ("/notes"):
+    - Criação (POST)
 
 ---
 
@@ -96,3 +98,21 @@ const regras = [
     2: mensagem de sucesso => 203: "Credentials deleted successfully"
 ];
 ```
+---
+
+## Rotas de Notas ("/credentials")
+
+- ### Criação (POST):
+    Essa rota é responsável por criar notas de um usuário. Para utilizá-la, é necessário enviar um *Bearer token* **válido** via cabeçalho (headers) tipo *Authorization*, e um corpo no seguinte formato:
+```json
+{
+    "title": string,
+    "note": string
+}
+```
+```js
+const regras = [
+    1: o título não pode passar de 50 caracteres, e a nota não pode passar de 1000 caracteres,
+    2: um usuário não pode cadastrar duas notas com o mesmo título,
+    3: mensagem de sucesso => 201: "Note created successfully"
+];

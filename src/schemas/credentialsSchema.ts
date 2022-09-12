@@ -7,4 +7,4 @@ export const credentialsSchema = joi.object<Omit<ICredentials, "id, userId">>({
     url: joi.string().uri().required(),
     username: joi.string().required(),
     password: joi.string().required()
-})
+});
