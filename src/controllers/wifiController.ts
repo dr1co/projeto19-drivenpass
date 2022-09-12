@@ -29,3 +29,17 @@ export async function getAllWifis(req: Request, res: Response) {
         res.status(statusCode).send("On getAllWifis: " + err.message);
     }
 }
+
+export async function deleteWifi(req: Request, res: Response) {
+    const { id: userId } = res.locals.user;
+    const { id } = req.params;
+
+    try {
+        await wifiServices.deleteOne(Number(id), Number(userId));
+
+        res.status(203).send("Wifi deleted successfully");
+    } catch (err: Error | any) {
+        const statusCode = handleError(err.code);
+        res.status(statusCode).send("On deleteCredentials: " + err.message);
+    }
+}

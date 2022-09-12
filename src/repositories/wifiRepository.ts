@@ -34,3 +34,11 @@ export async function getAll(userId: number) {
         }
     });
 }
+
+export async function deleteOne(id: number) {
+    await client.wifis.delete({
+        where: {
+            id
+        }
+    });
+}

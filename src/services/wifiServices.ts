@@ -22,3 +22,28 @@ export async function getAll(userId: number) {
         throw { code: "ServerProblem", message: err };
     }
 }
+
+export async function deleteOne(id: number, userId: number) {
+    try {
+        const wifis = await wifiRepository.getAll(userId);
+        let matchId = false;
+
+        for (let i = 0 ; i < wifis.length ; i++) {
+            if (wifis[i].id === id) {
+                matchId = true;
+                break;
+            }
+        }
+
+        if (!matchId) {
+            throw { code: "NotFound", message: "Error: could not find wifi to delete" };
+        }
+
+        await wifiRepository.deleteOne(id);
+    } catch (err: Error | any) {
+        if (err.code) {
+            throw err;
+        }
+        throw { code: "ServerProblem", message: err };
+    }
+}

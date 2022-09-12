@@ -228,3 +228,11 @@ const regras = [
     ]
 ];
 ```
+- ### Deleção (DELETE "./:id"):
+    Essa rota é responsável por deletar um dos wifis do usuário. Para utilizá-la, é necessário enviar apenas um *Bearer token* **válido** via cabeçalho (headers) tipo *Authorization*, além da id das credenciais via parâmetros de rota.
+```js
+const regras = [
+    1: o usuário não pode deletar wifis que não pertencem a ele,
+    2: mensagem de sucesso => 203: "Wifi deleted successfully"
+];
+```
