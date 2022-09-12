@@ -22,5 +22,5 @@ export async function insert(newUser: Omit<IUser, "id">) {
             email,
             password
         }
-    })
+    });
 }

@@ -6,6 +6,8 @@ export default function handleError(code: string) {
             return 500;
         case "NotFound":
             return 404;
+        case "TitleCreated":
+            return 422;
         default:
             return 418;
     }

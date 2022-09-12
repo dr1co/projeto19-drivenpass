@@ -9,6 +9,8 @@
 - Rotas de usuário:
     - Cadastro (POST "/signup")
     - Login (POST "/signin")
+- Rotas de credenciais ("/credentials"):
+    - Criação (POST)
 
 ---
 
@@ -46,4 +48,25 @@ const regras = [
     3: o token enviado terá validade de uma semana, após esse período é necessário realizar login novamente para obter um novo token
     4: mensagem de sucesso => 200: { token: string }
 ];
+```
+
+---
+## Rotas de credenciais ("/credentials"):
+
+- ### Criação (POST):
+    Essa rota é responsável por criar novas credenciais de um usuário. Para utilizá-la, é necessário enviar um *Bearer token* **válido** via cabeçalho (headers) tipo *Authorization*, e um corpo no seguinte formato:
+```json
+{
+    "title": string,
+    "url": string,
+    "username": string,
+    "password": string
+}
+```
+```js
+const regras = [
+    1: o campo url deve ser um link válido, e não uma string qualquer,
+    2: um usuário não pode cadastrar duas credenciais com o mesmo título,
+    3: mensagem de sucesso => 201: "Credentials created successfully"
+]
 ```
