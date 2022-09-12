@@ -21,6 +21,10 @@
     - Criação (POST)
     - Visualização (GET)
     - Deleção (DELETE "./:id")
+- Rotas de Wifis ("/wifis")
+    - Criação (POST)
+    - Visualização (GET)
+    - Deleção (DELETE "./:id")
 
 ---
 
