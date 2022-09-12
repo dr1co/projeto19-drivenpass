@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from "express";
+import { Request, Response } from "express";
 
 import handleError from "../services/errorServices";
 import * as userServices from '../services/userServices';
@@ -16,7 +16,7 @@ export async function createUser(req: Request, res: Response) {
     }
 }
 
-export async function loginUser(req: Request, res: Response, next: NextFunction) {
+export async function loginUser(req: Request, res: Response) {
     const user = req.body;
 
     try {

@@ -197,3 +197,20 @@ const regras = [
     2: mensagem de sucesso => 203: "Card deleted successfully"
 ];
 ```
+---
+## Rotas de Wifis ("/wifis"):
+
+- ### Criação (POST):
+    Essa rota é responsável por criar novos registros de wifi de um usuário. Para utilizá-la, é necessário enviar um *Bearer token* **válido** via cabeçalho (headers) tipo *Authorization*, e um corpo no seguinte formato:
+```json
+{
+  "title": string,
+  "name": string,
+  "password": string
+}
+```
+```js
+const regras = [
+    1: mensagem de sucesso => 201: "Wifi created successfully"
+];
+```
