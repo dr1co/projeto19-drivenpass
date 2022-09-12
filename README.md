@@ -159,7 +159,7 @@ const regras = [
   "expirationDate": string,
   "password": string,
   "isVirtual": boolean,
-  "type": string
+  "type": stringnumber
 }
 ```
 ```js
@@ -167,5 +167,24 @@ const regras = [
     1: o número deve conter 16 caracteres, o código de segurança deve conter 3 caracteres, a data de validade deve ser no formato "MM/AA" e a senha deve conter 4 caracteres,
     2: um usuário não pode cadastrar dois cartões com o mesmo título,
     3: mensagem de sucesso => 201: "Card created successfully"
+];
+```
+- ### Visualização (GET):
+    Essa rota é responsável por catalogar todos os cartões criados por um usuário. Para utilizá-la, é necessário enviar apenas um *Bearer token* **válido** via cabeçalho (headers) tipo *Authorization*.
+```js
+const regras = [
+    1: mensagem de sucesso => 200: cards = [
+        {
+            "id": number,
+            "title": string,
+            "number": string,
+            "securityCode": string (descriptografado),
+            "expirationDate": string,
+            "password": string (descriptografado),
+            "isVirtual": boolean,
+            "type": string ('CREDIT' | 'DEBIT' | 'DUAL'),
+            "userId": number
+        }, ...
+    ];
 ];
 ```

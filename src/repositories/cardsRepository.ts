@@ -28,3 +28,20 @@ export async function insert(card: Omit<ICard, "id">) {
         }
     });
 }
+
+export async function getAll(userId: number) {
+    return await client.cards.findMany({
+        where: {
+            userId
+        },
+        select: {
+            title: true,
+            number: true,
+            securityCode: true,
+            expirationDate: true,
+            password: true,
+            isVirtual: true,
+            type: true
+        }
+    });
+}

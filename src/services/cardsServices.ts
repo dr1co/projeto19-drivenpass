@@ -15,3 +15,19 @@ export async function addNew(card: Omit<cardsRepository.ICard, "id">) {
         throw { code: "ServerProblem", message: err };
     }
 }
+
+export async function getAll(userId: number) {
+    try {
+        const cards = await cardsRepository.getAll(userId);
+
+        return cards.map((card) => {
+            return {
+                ...card,
+                securityCode: encryption.decrypt(card.securityCode),
+                password: encryption.decrypt(card.password)
+            };
+        });
+    } catch (err: Error | any) {
+        throw { code: "ServerProblem", message: err };
+    }
+}

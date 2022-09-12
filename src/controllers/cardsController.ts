@@ -16,3 +16,16 @@ export async function createCard(req: Request, res: Response) {
         res.status(statusCode).send("On createCard: " + err.message);
     }
 }
+
+export async function getAllCards(req: Request, res: Response) {
+    const { id: userId } = res.locals.user;
+    
+    try {
+        const cards = await cardsServices.getAll(Number(userId));
+
+        res.status(200).send(cards);
+    } catch (err: Error | any) {
+        const statusCode = handleError(err.code);
+        res.status(statusCode).send("On getAllCards: " + err.message);
+    }
+}
