@@ -20,3 +20,17 @@ export async function insert(wifi: Omit<IWifi, "id">) {
         }
     });
 }
+
+export async function getAll(userId: number) {
+    return await client.wifis.findMany({
+        where: {
+            userId
+        },
+        select: {
+            id: true,
+            title: true,
+            name: true,
+            password: true
+        }
+    });
+}

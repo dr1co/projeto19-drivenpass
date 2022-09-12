@@ -10,3 +10,15 @@ export async function addNew(wifi: Omit<wifiRepository.IWifi, "id">) {
         throw { code: "ServerProblem", message: err };
     }
 }
+
+export async function getAll(userId: number) {
+    try {
+        const wifis = await wifiRepository.getAll(userId);
+
+        return wifis.map((wifi) => {
+            return { ...wifi, password: encryption.decrypt(wifi.password)};
+        });
+    } catch (err: Error | any) {
+        throw { code: "ServerProblem", message: err };
+    }
+}

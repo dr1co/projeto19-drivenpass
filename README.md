@@ -185,7 +185,7 @@ const regras = [
             "type": string ('CREDIT' | 'DEBIT' | 'DUAL'),
             "userId": number
         }, ...
-    ];
+    ]
 ];
 ```
 
@@ -212,5 +212,19 @@ const regras = [
 ```js
 const regras = [
     1: mensagem de sucesso => 201: "Wifi created successfully"
+];
+```
+- ### Visualização (GET):
+    Essa rota é responsável por catalogar todos os wifis criados por um usuário. Para utilizá-la, é necessário enviar apenas um *Bearer token* **válido** via cabeçalho (headers) tipo *Authorization*.
+```js
+const regras = [
+    1: mensagem de sucesso => 200: wifis = [
+        {
+            "id": number,
+            "title": string,
+            "name": string,
+            "password": string
+        }, ...
+    ]
 ];
 ```
