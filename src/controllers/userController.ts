@@ -11,10 +11,20 @@ export async function createUser(req: Request, res: Response, next: NextFunction
 
         res.status(201).send("User registered successfully");
     } catch (err: Error | any) {
-        if (err.code) {
-            const statusCode = handleError(err.code);
-            return res.status(statusCode).send("On createUser: " + err.message);
-        }
-        res.status(500).send("On createUser: " + err);
+        const statusCode = handleError(err.code);
+        res.status(statusCode).send("On createUser: " + err.message);
+    }
+}
+
+export async function loginUser(req: Request, res: Response, next: NextFunction) {
+    const user = req.body;
+
+    try {
+        const newToken = await userServices.login(user);
+
+        res.status(200).send({ token: newToken });
+    } catch (err: Error | any) {
+        const statusCode = handleError(err.code);
+        res.status(statusCode).send("On loginUser: " + err.message);
     }
 }

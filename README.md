@@ -7,13 +7,14 @@
 ## Índice:
 
 - Rotas de usuário:
-    - Cadastro (POST /signup)
+    - Cadastro (POST "/signup")
+    - Login (POST "/signin")
 
 ---
 
 ## Rotas de usuário:
 
-- ### Cadastro (POST /signup):
+- ### Cadastro (POST "/signup"):
     Como o nome sugere, essa rota é responsável pelo cadastro de novos usuários à plataforma. Para utilizá-la, basta enviar um corpo no formato:
 ```json
 {
@@ -28,3 +29,21 @@ const regras = [
     3: o cadastro só pode ser realizado uma única vez com o email fornecido, não é possível realizar dois cadastros utilizando o mesmo email,
     4: mensagem de sucesso => 201: "User registered successfully"
 ];
+```
+
+- ### Login (POST "/signin"):
+    Essa rota é responsável pelo login de usuários já cadastrados à plataforma, como o nome sugere. Para utilizá-la, basta enviar o mesmo corpo da rota de cadastro, no formato:
+```json
+{
+    "email": string,
+    "password": string
+}
+```
+```js
+const regras = [
+    1: o campo email deve ser um email válido e cadastrado, e não uma string qualquer,
+    2: a senha deve ser idêntica à cadastrada para efetuar o login
+    3: o token enviado terá validade de uma semana, após esse período é necessário realizar login novamente para obter um novo token
+    4: mensagem de sucesso => 200: { token: string }
+];
+```
