@@ -29,10 +29,19 @@ export async function getAll(userId: number) {
             userId
         },
         select : {
+            id: true,
             title: true,
             url: true,
             username: true,
             password: true
+        }
+    });
+}
+
+export async function deleteOne(id: number) {
+    await client.credentials.delete({
+        where: {
+            id
         }
     });
 }

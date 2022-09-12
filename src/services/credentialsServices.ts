@@ -25,3 +25,28 @@ export async function getAll(userId: number) {
         throw { code: "ServerProblem", message: err };
     }
 }
+
+export async function deleteOne(id: number, userId: number) {
+    try {
+        const credentials = await credentialsRepository.getAll(userId);
+        let matchId = false;
+
+        for (let i = 0 ; i < credentials.length ; i++) {
+            if (credentials[i].id === id) {
+                matchId = true;
+                break;
+            }
+        }
+
+        if (!matchId) {
+            throw { code: "NotFound", message: "Error: could not find credentials to delete" };
+        }
+
+        await credentialsRepository.deleteOne(id);
+    } catch (err: Error | any) {
+        if (err.code) {
+            throw err;
+        }
+        throw { code: "ServerProblem", message: err };
+    }
+}
