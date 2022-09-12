@@ -13,7 +13,7 @@ export async function createNote(req: Request, res: Response) {
         res.status(201).send("Note created successfully");
     } catch (err: Error | any) {
         const statusCode = handleError(err.code);
-        res.status(statusCode).send("On createCredentials: " + err.message);
+        res.status(statusCode).send("On createNote: " + err.message);
     }
 }
 
@@ -26,7 +26,7 @@ export async function getAllNotes(req: Request, res: Response) {
         res.status(200).send(notes);
     } catch (err: Error | any) {
         const statusCode = handleError(err.code);
-        res.status(statusCode).send("On getAllCredentials: " + err.message);
+        res.status(statusCode).send("On getAllNotes: " + err.message);
     }
 }
 
@@ -40,6 +40,6 @@ export async function deleteNote(req: Request, res: Response) {
         res.status(203).send("Note deleted successfully");
     } catch (err: Error | any) {
         const statusCode = handleError(err.code);
-        res.status(statusCode).send("On getAllCredentials: " + err.message);
+        res.status(statusCode).send("On deleteNote: " + err.message);
     }
 }

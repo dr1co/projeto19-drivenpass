@@ -6,6 +6,7 @@ dotenv.config();
 import authRouter from './routes/authRoutes';
 import credentialsRouter from './routes/credentialsRoutes';
 import notesRouter from './routes/notesRoutes';
+import cardsRouter from './routes/cardsRoutes';
 
 const PORT = Number(process.env.PORT) || 4001;
 
@@ -17,6 +18,7 @@ server.use(cors());
 server.use(authRouter);
 server.use(credentialsRouter);
 server.use(notesRouter);
+server.use(cardsRouter);
 
 server.listen(PORT, () => {
     console.log(`Server running on port: ${PORT}`);

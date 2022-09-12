@@ -17,6 +17,10 @@
     - Criação (POST)
     - Visualização (GET)
     - Deleção (DELETE "./:id")
+- Rotas de Cartões ("/cards")
+    - Criação (POST)
+    - Visualização (GET)
+    - Deleção (DELETE "./:id")
 
 ---
 
@@ -103,7 +107,7 @@ const regras = [
 ```
 ---
 
-## Rotas de Notas ("/credentials")
+## Rotas de Notas ("/notes")
 
 - ### Criação (POST):
     Essa rota é responsável por criar notas de um usuário. Para utilizá-la, é necessário enviar um *Bearer token* **válido** via cabeçalho (headers) tipo *Authorization*, e um corpo no seguinte formato:
@@ -140,5 +144,28 @@ const regras = [
 const regras = [
     1: o usuário não pode deletar credenciais que não pertencem a ele,
     2: mensagem de sucesso => 203: "Note deleted successfully"
+];
+```
+---
+## Rotas de Cartões ("/cards"):
+
+- ### Criação (POST):
+    Essa rota é responsável por criar novos cartões de um usuário. Para utilizá-la, é necessário enviar um *Bearer token* **válido** via cabeçalho (headers) tipo *Authorization*, e um corpo no seguinte formato:
+```json
+{
+  "title": string,
+  "number": string,
+  "securityCode": string,
+  "expirationDate": string,
+  "password": string,
+  "isVirtual": boolean,
+  "type": string
+}
+```
+```js
+const regras = [
+    1: o número deve conter 16 caracteres, o código de segurança deve conter 3 caracteres, a data de validade deve ser no formato "MM/AA" e a senha deve conter 4 caracteres,
+    2: um usuário não pode cadastrar dois cartões com o mesmo título,
+    3: mensagem de sucesso => 201: "Card created successfully"
 ];
 ```
