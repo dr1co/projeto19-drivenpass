@@ -1,6 +1,6 @@
 export default function handleError(code: string) {
     switch(code) {
-        case "RegisteredUser":
+        case "RegisteredUser" || "IncorrectPassword":
             return 401;
         case "ServerProblem":
             return 500;
