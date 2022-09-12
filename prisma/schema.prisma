@@ -51,6 +51,7 @@ model Cards {
   number String @db.VarChar(16)
   securityCode String
   expirationDate String @db.VarChar(5)
+  password String
   isVirtual Boolean
   type CardType
   user Users @relation(fields: [userId], references: id)
