@@ -29,3 +29,17 @@ export async function getAllCards(req: Request, res: Response) {
         res.status(statusCode).send("On getAllCards: " + err.message);
     }
 }
+
+export async function deleteCard(req: Request, res: Response) {
+    const { id: userId } = res.locals.user;
+    const { id } = req.params;
+
+    try {
+        const cards = await cardsServices.deleteOne(Number(id),Number(userId));
+
+        res.status(203).send("Card deleted successfully");
+    } catch (err: Error | any) {
+        const statusCode = handleError(err.code);
+        res.status(statusCode).send("On deleteCard: " + err.message);
+    }
+}

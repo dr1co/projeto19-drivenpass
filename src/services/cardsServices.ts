@@ -31,3 +31,28 @@ export async function getAll(userId: number) {
         throw { code: "ServerProblem", message: err };
     }
 }
+
+export async function deleteOne(id: number, userId: number) {
+    try {
+        const cards = await cardsRepository.getAll(userId);
+        let matchId = false;
+
+        for (let i = 0 ; i < cards.length ; i++) {
+            if (cards[i].id === id) {
+                matchId = true;
+                break;
+            }
+        }
+
+        if (!matchId) {
+            throw { code: "NotFound", message: "Error: could not find card to delete" };
+        }
+
+        await cardsRepository.deleteOne(id);
+    } catch (err: Error | any) {
+        if (err.code) {
+            throw err;
+        }
+        throw { code: "ServerProblem", message: err };
+    }
+}

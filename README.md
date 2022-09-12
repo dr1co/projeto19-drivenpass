@@ -142,7 +142,7 @@ const regras = [
     Essa rota é responsável por deletar uma das notas do usuário. Para utilizá-la, é necessário enviar apenas um *Bearer token* **válido** via cabeçalho (headers) tipo *Authorization*, além da id das credenciais via parâmetros de rota.
 ```js
 const regras = [
-    1: o usuário não pode deletar credenciais que não pertencem a ele,
+    1: o usuário não pode deletar notas que não pertencem a ele,
     2: mensagem de sucesso => 203: "Note deleted successfully"
 ];
 ```
@@ -186,5 +186,14 @@ const regras = [
             "userId": number
         }, ...
     ];
+];
+```
+
+- ### Deleção (DELETE "./:id"):
+    Essa rota é responsável por deletar um dos cartões do usuário. Para utilizá-la, é necessário enviar apenas um *Bearer token* **válido** via cabeçalho (headers) tipo *Authorization*, além da id das credenciais via parâmetros de rota.
+```js
+const regras = [
+    1: o usuário não pode deletar cartões que não pertencem a ele,
+    2: mensagem de sucesso => 203: "Card deleted successfully"
 ];
 ```

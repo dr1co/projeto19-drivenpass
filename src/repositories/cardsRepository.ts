@@ -35,6 +35,7 @@ export async function getAll(userId: number) {
             userId
         },
         select: {
+            id: true,
             title: true,
             number: true,
             securityCode: true,
@@ -42,6 +43,14 @@ export async function getAll(userId: number) {
             password: true,
             isVirtual: true,
             type: true
+        }
+    });
+}
+
+export async function deleteOne(id: number) {
+    await client.cards.delete({
+        where: {
+            id
         }
     });
 }
