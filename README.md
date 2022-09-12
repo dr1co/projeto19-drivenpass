@@ -11,6 +11,7 @@
     - Login (POST "/signin")
 - Rotas de credenciais ("/credentials"):
     - Criação (POST)
+    - Visualização (GET)
 
 ---
 
@@ -68,5 +69,20 @@ const regras = [
     1: o campo url deve ser um link válido, e não uma string qualquer,
     2: um usuário não pode cadastrar duas credenciais com o mesmo título,
     3: mensagem de sucesso => 201: "Credentials created successfully"
-]
+];
+```
+
+- ### Visualização (GET):
+    Essa rota é responsável por catalogar todas as credenciais criadas por um usuário. Para utilizá-la, é necessário enviar apenas um *Bearer token* **válido** via cabeçalho (headers) tipo *Authorization*.
+```js
+const regras = [
+    1: mensagem de sucesso => 200: credentials = [
+        {
+            "title": string,
+            "url": string,
+            "username": string,
+            "password": string (descriptografado)
+        }, ...
+    ]
+];
 ```

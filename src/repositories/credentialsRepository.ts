@@ -22,3 +22,17 @@ export async function insert(credentials: Omit<ICredentials, "id">) {
         }
     });
 }
+
+export async function getAll(userId: number) {
+    return await client.credentials.findMany({
+        where: {
+            userId
+        },
+        select : {
+            title: true,
+            url: true,
+            username: true,
+            password: true
+        }
+    });
+}

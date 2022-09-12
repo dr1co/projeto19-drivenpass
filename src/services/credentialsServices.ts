@@ -13,3 +13,15 @@ export async function addNew(credentials: Omit<credentialsRepository.ICredential
         throw { code: "ServerProblem", message: err };
     }
 }
+
+export async function getAll(userId: number) {
+    try {
+        const credentials = await credentialsRepository.getAll(userId);
+
+        return credentials.map((cred) => {
+            return { ...cred, password: encryption.decrypt(cred.password)}
+        });
+    } catch (err: Error | any) {
+        throw { code: "ServerProblem", message: err };
+    }
+}
